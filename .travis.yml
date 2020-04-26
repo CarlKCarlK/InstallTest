@@ -1,0 +1,30 @@
+language: python
+matrix:
+  include:
+  - name: macosx_py3
+    os: osx
+    osx_image: xcode11.3
+    language: shell
+    before_install:
+    - wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
+    - bash miniconda.sh -b -p $HOME/miniconda
+    - export PATH=$HOME/miniconda/bin:$PATH
+    - hash -r
+    - conda config --set always_yes yes --set changeps1 no
+    - conda update -q conda
+    - conda info -a
+    - conda install pip
+    - pip install https://github.com/fastlmm/FaST-LMM/releases/download/0.4.6/fastlmm-0.4.6-cp37-cp37m-macosx_10_9_x86_64.whl
+
+install:
+- ls -las
+
+script:
+- ls -las
+
+notifications:
+  email:
+    recipients:
+    - carlk@msn.com
+    on_success: always
+    on_failure: always
