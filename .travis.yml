@@ -42,7 +42,7 @@ matrix:
     - conda install pip    
 
 install:
-- python -m pip install --index-url https://test.pypi.org/simple/ fastlmm
+- python -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ fastlmm
 
 script:
 - python fastlmm.minitest.py
