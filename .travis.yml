@@ -34,7 +34,8 @@ install:
 - conda info -a
 - conda install pip
 - conda install "mkl==2019.4" "scipy>=1.1.0" "numpy>=1.11.3"
-- python -m pip install --extra-index-url https://test.pypi.org/simple/ --index-url https://pypi.org/simple/ 'fastlmm'
+#python -m pip install --extra-index-url https://test.pypi.org/simple/ --index-url https://pypi.org/simple/ 'fastlmm'
+- pip install fastlmm
 
 script:
 - python fastlmm.minitest.py
