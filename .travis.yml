@@ -9,11 +9,6 @@ matrix:
     - wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
     - bash miniconda.sh -b -p $HOME/miniconda
     - export PATH=$HOME/miniconda/bin:$PATH
-    - hash -r
-    - conda config --set always_yes yes --set changeps1 no
-    - conda update -q conda
-    - conda info -a
-    - conda install pip
   - name: linux_py3
     python: 3.7
     os: linux
@@ -21,11 +16,6 @@ matrix:
     - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
     - bash miniconda.sh -b -p $HOME/miniconda
     - export PATH=$HOME/miniconda/bin:$PATH
-    - hash -r
-    - conda config --set always_yes yes --set changeps1 no
-    - conda update -q conda
-    - conda info -a
-    - conda install pip
   - name: win_py3
     os: windows
     language: shell
@@ -36,13 +26,15 @@ matrix:
     - echo $ChocolateyToolsLocation
     - export SYSP=/c/tools/miniconda3
     - export PATH=$SYSP:$SYSP/Library/bin:$SYSP/Scripts:$PATH
-    - conda config --set always_yes yes --set changeps1 no
-    - conda update -q conda
-    - conda info -a
-    - conda install pip    
 
 install:
-- python -m pip install --extra-index-url https://test.pypi.org/simple/ --index-url https://pypi.org/simple/ 'fastlmm==0.4.6'
+- hash -r
+- conda config --set always_yes yes --set changeps1 no
+- conda update -q conda
+- conda info -a
+- conda install pip
+- conda install "mkl==2019.4" "scipy>=1.1.0" "numpy>=1.11.3"
+- python -m pip install --extra-index-url https://test.pypi.org/simple/ --index-url https://pypi.org/simple/ 'fastlmm'
 
 script:
 - python fastlmm.minitest.py
