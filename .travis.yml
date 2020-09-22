@@ -36,7 +36,7 @@ install:
 - conda install pip
 - conda install "mkl>=2019.4" "scipy" "numpy"
 #- python -m pip install --extra-index-url https://test.pypi.org/simple/ --index-url https://pypi.org/simple/ 'pysnptools'
-- pip install fastlmm
+- pip install fastlmm=4.0.10
 #- pip install git+https://github.com/fastlmm/PySnpTools.git@dev
 #- pip install pysnptools
 
