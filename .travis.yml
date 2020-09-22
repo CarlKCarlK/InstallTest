@@ -1,14 +1,14 @@
 language: python
 matrix:
   include:
-  - name: linux_py3
-    python: 3.7
+  - name: linux_py38
+    python: 3.8
     os: linux
     before_install:
     - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
     - bash miniconda.sh -b -p $HOME/miniconda
     - export PATH=$HOME/miniconda/bin:$PATH
-  - name: macosx_py3
+  - name: macosx_py38
     os: osx
     osx_image: xcode11.3
     language: shell
@@ -33,14 +33,14 @@ install:
 - conda update -q conda
 - conda info -a
 - conda install pip
-- conda install "mkl==2019.4" "scipy>=1.1.0" "numpy>=1.11.3"
+- conda install "mkl>=2019.4" "scipy" "numpy"
 #- python -m pip install --extra-index-url https://test.pypi.org/simple/ --index-url https://pypi.org/simple/ 'pysnptools'
-#- pip install fastlmm
+- pip install fastlmm
 #- pip install git+https://github.com/fastlmm/PySnpTools.git@dev
-- pip install pysnptools
+#- pip install pysnptools
 
 script:
-- python pysnptools.minitest.py
+- python fastlmm.minitest.py
 
 notifications:
   email:
