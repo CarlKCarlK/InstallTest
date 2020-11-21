@@ -2,8 +2,8 @@ language: python
 
 matrix:
   include:
-  - name: linux_py38
-    python: 3.8
+  - name: linux_py39
+    python: 3.9
     os: linux
     before_install:
     - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
@@ -21,8 +21,6 @@ matrix:
     os: windows
     language: shell
     before_install:
-    #git clone --depth=50 --branch=dev https://github.com/fastlmm/FaST-LMM.git fastlmm/FaST-LMM
-    #cd fastlmm/FaST-LMM
     - choco install miniconda3
     - echo $ChocolateyToolsLocation
     - export SYSP=/c/tools/miniconda3
@@ -36,13 +34,13 @@ install:
 - conda install pip
 - conda install "mkl>=2019.4" "scipy" "numpy"
 #- python -m pip install --extra-index-url https://test.pypi.org/simple/ --index-url https://pypi.org/simple/ 'pysnptools'
-- pip install fastlmm
+#- pip install fastlmm
 #- pip install git+https://github.com/fastlmm/PySnpTools.git@dev
-#- pip install pysnptools
+- pip install pysnptools
 
 script:
-- python fastlmm.minitest.py
-#- python pysnptools.minitest.py
+#- python fastlmm.minitest.py
+- python pysnptools.minitest.py
 
 notifications:
   email:
