@@ -28,7 +28,7 @@ matrix:
     - conda config --set always_yes yes --set changeps1 no
     - conda update -q conda
     - conda create --name py39 python=3.9
-    - conda init cmd
+    - conda init cmd.exe
     - conda activate py39
 
 install:
