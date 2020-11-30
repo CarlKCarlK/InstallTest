@@ -21,13 +21,13 @@ matrix:
     os: windows
     language: shell
     before_install:
-    - choco install miniconda3
+    - choco install anaconda3 /AddToPath
     - echo $ChocolateyToolsLocation
-    - export SYSP=/c/tools/miniconda3
-    - export PATH=$SYSP:$SYSP/Library/bin:$SYSP/Scripts:$PATH
-    - conda config --set always_yes yes --set changeps1 no
-    - conda update -q conda
-    - conda install -c conda-forge/label/prerelease python
+    #- export SYSP=/c/tools/miniconda3
+    #- export PATH=$SYSP:$SYSP/Library/bin:$SYSP/Scripts:$PATH
+    #- conda config --set always_yes yes --set changeps1 no
+    #- conda update -q conda
+    #- conda install -c conda-forge/label/prerelease python
     #- conda create --name py39 python=3.9
     #- conda init bash
     #- source $(conda info --root)/etc/profile.d/conda.sh
@@ -36,7 +36,7 @@ matrix:
 install:
 - hash -r
 - conda config --set always_yes yes --set changeps1 no
-#- conda update -q conda #Move up?? cmk
+- conda update -q conda
 - conda info -a
 - conda install pip
 - conda install "mkl>=2019.4" "scipy" "numpy"
