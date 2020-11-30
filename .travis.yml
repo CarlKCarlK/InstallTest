@@ -27,7 +27,7 @@ matrix:
     - export PATH=$SYSP:$SYSP/Library/bin:$SYSP/Scripts:$PATH
     - conda config --set always_yes yes --set changeps1 no
     - conda update -q conda
-    - conda create -py39 python=3.9
+    - conda create --name py39 python=3.9
     - conda activate py39
 
 install:
