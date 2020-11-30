@@ -21,10 +21,10 @@ matrix:
     os: windows
     language: shell
     before_install:
-    - choco install anaconda3 /AddToPath
+    - choco install anaconda3
     - echo $ChocolateyToolsLocation
-    #- export SYSP=/c/tools/miniconda3
-    #- export PATH=$SYSP:$SYSP/Library/bin:$SYSP/Scripts:$PATH
+    - export SYSP=/c/tools/anaconda3
+    - export PATH=$SYSP:$SYSP/Library/bin:$SYSP/Scripts:$PATH
     #- conda config --set always_yes yes --set changeps1 no
     #- conda update -q conda
     #- conda install -c conda-forge/label/prerelease python
