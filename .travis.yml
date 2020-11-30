@@ -35,7 +35,7 @@ matrix:
 install:
 - hash -r
 - conda config --set always_yes yes --set changeps1 no
-- conda update -q conda
+#- conda update -q conda
 - conda info -a
 - conda install pip
 - conda install "mkl>=2019.4" "scipy" "numpy"
