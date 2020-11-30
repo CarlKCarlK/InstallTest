@@ -27,10 +27,11 @@ matrix:
     - export PATH=$SYSP:$SYSP/Library/bin:$SYSP/Scripts:$PATH
     - conda config --set always_yes yes --set changeps1 no
     - conda update -q conda
-    - conda create --name py39 anaconda python=3.9
+    - conda install -c conda-forge/label/prerelease python
+    #- conda create --name py39 python=3.9
     #- conda init bash
-    - source $(conda info --root)/etc/profile.d/conda.sh
-    - conda activate py39
+    #- source $(conda info --root)/etc/profile.d/conda.sh
+    #- conda activate py39
 
 install:
 - hash -r
