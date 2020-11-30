@@ -2,21 +2,21 @@ language: python
 
 matrix:
   include:
-  - name: linux_py39
-    python: 3.9
-    os: linux
-    before_install:
-    - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-    - bash miniconda.sh -b -p $HOME/miniconda
-    - export PATH=$HOME/miniconda/bin:$PATH
-  - name: macosx_py38
-    os: osx
-    osx_image: xcode11.3
-    language: shell
-    before_install:
-    - wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
-    - bash miniconda.sh -b -p $HOME/miniconda
-    - export PATH=$HOME/miniconda/bin:$PATH
+  # - name: linux_py39
+  #   python: 3.9
+  #   os: linux
+  #   before_install:
+  #   - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+  #   - bash miniconda.sh -b -p $HOME/miniconda
+  #   - export PATH=$HOME/miniconda/bin:$PATH
+  # - name: macosx_py38
+  #   os: osx
+  #   osx_image: xcode11.3
+  #   language: shell
+  #   before_install:
+  #   - wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
+  #   - bash miniconda.sh -b -p $HOME/miniconda
+  #   - export PATH=$HOME/miniconda/bin:$PATH
   - name: win_py3
     os: windows
     language: shell
@@ -25,6 +25,10 @@ matrix:
     - echo $ChocolateyToolsLocation
     - export SYSP=/c/tools/miniconda3
     - export PATH=$SYSP:$SYSP/Library/bin:$SYSP/Scripts:$PATH
+    - conda config --set always_yes yes --set changeps1 no
+    - conda update -q conda
+    - conda create -py39 python=3.9
+    - conda activate py39
 
 install:
 - hash -r
@@ -34,13 +38,13 @@ install:
 - conda install pip
 - conda install "mkl>=2019.4" "scipy" "numpy"
 #- python -m pip install --extra-index-url https://test.pypi.org/simple/ --index-url https://pypi.org/simple/ 'pysnptools'
-#- pip install fastlmm
+- pip install fastlmm
 #- pip install git+https://github.com/fastlmm/PySnpTools.git@dev
-- pip install pysnptools
+#- pip install pysnptools
 
 script:
-#- python fastlmm.minitest.py
-- python pysnptools.minitest.py
+- python fastlmm.minitest.py
+#- python pysnptools.minitest.py
 
 notifications:
   email:
