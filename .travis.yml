@@ -29,6 +29,7 @@ matrix:
     - conda update -q conda
     - conda create --name py39 python=3.9
     #- conda init bash
+    - source $(conda info --root)/etc/profile.d/conda.sh
     - source conda activate py39
 
 install:
