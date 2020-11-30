@@ -28,8 +28,8 @@ matrix:
     - conda config --set always_yes yes --set changeps1 no
     - conda update -q conda
     - conda create --name py39 python=3.9
-    - conda init bash
-    - conda activate py39
+    #- conda init bash
+    - source conda activate py39
 
 install:
 - hash -r
