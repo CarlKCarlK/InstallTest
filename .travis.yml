@@ -2,13 +2,13 @@ language: python
 
 matrix:
   include:
-  # - name: linux_py39
-  #   python: 3.9
-  #   os: linux
-  #   before_install:
-  #   - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-  #   - bash miniconda.sh -b -p $HOME/miniconda
-  #   - export PATH=$HOME/miniconda/bin:$PATH
+  - name: linux_py39
+    python: 3.9
+    os: linux
+    before_install:
+    - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+    - bash miniconda.sh -b -p $HOME/miniconda
+    - export PATH=$HOME/miniconda/bin:$PATH
   # - name: macosx_py38
   #   os: osx
   #   osx_image: xcode11.3
@@ -17,26 +17,27 @@ matrix:
   #   - wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
   #   - bash miniconda.sh -b -p $HOME/miniconda
   #   - export PATH=$HOME/miniconda/bin:$PATH
-  - name: win_py3
-    os: windows
-    language: shell
-    before_install:
-    - choco install anaconda3
-    - echo $ChocolateyToolsLocation
-    - export SYSP=/c/tools/anaconda3
-    - export PATH=$SYSP:$SYSP/Library/bin:$SYSP/Scripts:$PATH
-    #- conda config --set always_yes yes --set changeps1 no
-    #- conda update -q conda
-    #- conda install -c conda-forge/label/prerelease python
-    #- conda create --name py39 python=3.9
-    #- conda init bash
-    #- source $(conda info --root)/etc/profile.d/conda.sh
-    #- conda activate py39
+  # - name: win_py3
+  #   os: windows
+  #   language: shell
+  #   before_install:
+    # - choco install anaconda3
+    # - echo $ChocolateyToolsLocation
+    # - export SYSP=/c/tools/anaconda3
+    # - export PATH=$SYSP:$SYSP/Library/bin:$SYSP/Scripts:$PATH
+    # - conda config --set always_yes yes --set changeps1 no
+    # - conda update -q conda
+    # - conda install -c conda-forge/label/prerelease python
+    # - conda create --name py39 python=3.9
+    # - conda init bash
+    # - source $(conda info --root)/etc/profile.d/conda.sh
+    # - conda activate py39
 
 install:
 - hash -r
 - conda config --set always_yes yes --set changeps1 no
 - conda update -q conda
+- conda install python=3.9
 - conda info -a
 - conda install pip
 - conda install "mkl>=2019.4" "scipy" "numpy"
