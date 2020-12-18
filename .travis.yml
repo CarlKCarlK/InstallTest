@@ -41,6 +41,7 @@ install:
 - conda info -a
 - conda install pip
 - conda install "mkl>=2019.4" "scipy" "numpy"
+- conda install -c conda-forge/label/scikit-learn_rc scikit-learn
 #- python -m pip install --extra-index-url https://test.pypi.org/simple/ --index-url https://pypi.org/simple/ 'pysnptools'
 - pip install fastlmm
 #- pip install git+https://github.com/fastlmm/PySnpTools.git@dev
