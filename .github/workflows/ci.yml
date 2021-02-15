@@ -25,8 +25,9 @@ jobs:
       shell: bash -l {0}
       run: |
         conda install pip
-        pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple bed-reader
-        pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple pysnptools
+        conda install "mkl>=2019.4" "scipy" "numpy"
+        #pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple bed-reader
+        #pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple pysnptools
         pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm
 
     - name: Test
