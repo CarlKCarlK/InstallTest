@@ -6,8 +6,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]#, windows-latest, macOS-latest] cmk
-        python-version: [3.8]#, 3.7] cmk
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+        python-version: [3.8, 3.7, 3.9]
     runs-on: ${{ matrix.os }}
 
     steps:
