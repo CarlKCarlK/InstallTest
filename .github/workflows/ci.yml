@@ -25,15 +25,15 @@ jobs:
       shell: bash -l {0}
       run: |
         conda install pip
-        conda install "mkl==2019.4" "scipy" "numpy" "cython>=0.29"
+        conda install "mkl==2019.4" "scipy" "numpy"
         pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple bed-reader
-        #pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple pysnptools
-        #pip install --no-build-isolation fastlmm # --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm
+        pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple pysnptools
+        pip install --no-build-isolation fastlmm # --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm
 
     - name: Test
       shell: bash -l {0}
       run: |
         python bed-reader.minitest.py
-        #python pysnptools.minitest.py
-        #python fastlmm.minitest.py
+        python pysnptools.minitest.py
+        python fastlmm.minitest.py
         
