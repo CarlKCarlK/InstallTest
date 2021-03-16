@@ -28,8 +28,8 @@ jobs:
         conda install "mkl==2019.4" "scipy" "numpy"
         #pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple bed-reader
         #pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple pysnptools
-        pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm
-        #pip install --no-build-isolation fastlmm
+        #pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm
+        pip install --no-build-isolation fastlmm
 
     - name: Test
       shell: bash -l {0}
