@@ -30,8 +30,8 @@ jobs:
         conda install pip
         conda install "mkl==2019.4" "scipy" "numpy"
         #pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple bed-reader
-        pip install bed-reader==0.2.5
-        pip install pysnptools==0.5.2
+        #pip install bed-reader==0.2.5
+        #pip install pysnptools==0.5.2
         #pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple pysnptools
         pip install --no-build-isolation fastlmm
         #pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm
@@ -44,5 +44,5 @@ jobs:
         python bed-reader.minitest.py
         python pysnptools.minitest.py
         python fastlmm.minitest.py
-        python mkltest.py
+        #python mkltest.py
         
