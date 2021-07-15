@@ -44,4 +44,5 @@ jobs:
         python bed-reader.minitest.py
         python pysnptools.minitest.py
         python fastlmm.minitest.py
+        python mkltest.py
         
