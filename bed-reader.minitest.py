@@ -1,4 +1,10 @@
 import numpy as np
+from bed_reader import (  # noqa
+    get_num_threads,
+    subset_f64_f64,
+    subset_f32_f64,
+    subset_f32_f32,
+)
 from bed_reader import open_bed, sample_file
 
 
