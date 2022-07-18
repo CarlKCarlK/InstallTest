@@ -27,13 +27,14 @@ jobs:
     - name: Install Prerequisites and build
       shell: bash -l {0}
       run: |
-        conda install pip
-        conda install "mkl==2019.4" "scipy" "numpy"
+        #conda install pip
+        #conda install "mkl==2019.4" "scipy" "numpy"
         #pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple bed-reader==0.2.23
         #pip install bed-reader==0.2.23
         #pip install pysnptools==0.5.2
         #pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple pysnptools
-        pip install --no-build-isolation fastlmm
+        #pip install --no-build-isolation fastlmm
+        pip install fastlmm
         #pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm
         #pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm==0.6.1
         
