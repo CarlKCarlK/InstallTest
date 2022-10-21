@@ -10,7 +10,10 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macOS-latest]
-        python-version: [3.8, 3.7, 3.9]
+        python-version: [3.8, 3.7, 3.9, "3.10"]
+        exclude:
+            - os: windows-latest
+              python-version: "3.10"
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -32,10 +35,10 @@ jobs:
         #pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple bed-reader==0.2.24
         #pip install bed-reader==0.2.23
         #pip install pysnptools==0.5.2
-        #pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple pysnptools
+        pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple pysnptools
         #pip install --no-build-isolation fastlmm
         #pip install cbgen==1.0.1
-        pip install fastlmm
+        #pip install fastlmm
         #pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm
         #pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm==0.6.1
         
@@ -45,6 +48,6 @@ jobs:
       run: |
         python bed-reader.minitest.py
         python pysnptools.minitest.py
-        python fastlmm.minitest.py
+        #python fastlmm.minitest.py
         
         
