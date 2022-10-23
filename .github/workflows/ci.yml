@@ -36,10 +36,10 @@ jobs:
         #pip install bed-reader==0.2.23
         #pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple pysnptools==0.5.6
         #pip install --no-build-isolation fastlmm
-        pip install pysnptools
+        #pip install pysnptools
         #pip install cbgen==1.0.1
-        #pip install fastlmm
-        pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm
+        pip install fastlmm
+        #pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm
         #pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm==0.6.1
         
 
