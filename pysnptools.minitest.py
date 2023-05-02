@@ -17,7 +17,7 @@ if not (platform.system() == 'Windows' and sys.version_info >= (3, 10)):
     print(probs_all.shape)          # Shape of the NumPy array
     assert probs_all.shape==(500,199,3)
 
-bed_file = example_file("pysnptools/examples/toydata.5chrom.bed")
+bed_file = example_file("pysnptools/examples/toydata.5chrom.*","*.bed")
 from pysnptools.snpreader import Bed
 bed = Bed(bed_file,count_A1=False)
 val0 = bed[:,0].read().val   # Read 1st SNP
