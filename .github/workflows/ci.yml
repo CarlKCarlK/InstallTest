@@ -34,6 +34,7 @@ jobs:
         # pip install scipy numpy pandas psutil h5py cloudpickle more-itertools bed-reader poetry pooch
         # pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple pysnptools==0.5.9
         #pip install --no-build-isolation fastlmm
+        pip install pooch
         pip install pysnptools==0.5.9
         #pip install cbgen==1.0.1
         pip install fastlmm
