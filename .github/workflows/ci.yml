@@ -27,19 +27,19 @@ jobs:
     - name: Install Prerequisites and build
       shell: bash -l {0}
       run: |
-        #conda install pip
-        #pip install poetry scipy>=1.1.0 numpy>=1.11.3 psutil>=5.6.7 pandas>=1.1.1 h5py>=2.10.0 dill>=0.2.9 wheel>=0.34.2 bed-reader>=0.2.5 more-itertools>=8.7.0
+        # conda install pip
+        # pip install poetry scipy>=1.1.0 numpy>=1.11.3 psutil>=5.6.7 pandas>=1.1.1 h5py>=2.10.0 dill>=0.2.9 wheel>=0.34.2 bed-reader>=0.2.5 more-itertools>=8.7.0
         # pip install pooch numpy pandas chardet
         # pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple bed-reader==0.2.34
         # pip install bed-reader==0.2.33
-        pip install scipy numpy pandas psutil h5py cloudpickle more-itertools bed-reader poetry pooch
+        # pip install scipy numpy pandas psutil h5py cloudpickle more-itertools bed-reader poetry pooch
         # pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple pysnptools==0.5.9
         # pip install --no-build-isolation fastlmm
-        pip install pysnptools
-        #pip install cbgen==1.0.1
-        # pip install fastlmm
+        # pip install pysnptools
+        # pip install cbgen==1.0.1
+        pip install fastlmm
         # pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm
-        pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm==0.6.5
+        # pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm==0.6.5
         
 
     - name: Test
