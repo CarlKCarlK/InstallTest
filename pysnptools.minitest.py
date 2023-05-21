@@ -5,17 +5,16 @@ import platform
 
 bgen_file = example_file("pysnptools/examples/example.bgen")
 
-if not (platform.system() == 'Windows' and sys.version_info >= (3, 10)):
-    # Read from the file
-    from pysnptools.distreader import Bgen
-    bgen = Bgen(bgen_file)          # Create a reader
-    probs0 = bgen[:,0].read().val   # Read 1st SNP
-    print(probs0.shape)             # Shape of the NumPy array
-    assert probs0.shape==(500,1,3)
+# Read from the file
+from pysnptools.distreader import Bgen
+bgen = Bgen(bgen_file)          # Create a reader
+probs0 = bgen[:,0].read().val   # Read 1st SNP
+print(probs0.shape)             # Shape of the NumPy array
+assert probs0.shape==(500,1,3)
 
-    probs_all = bgen.read().val     # Read all variants
-    print(probs_all.shape)          # Shape of the NumPy array
-    assert probs_all.shape==(500,199,3)
+probs_all = bgen.read().val     # Read all variants
+print(probs_all.shape)          # Shape of the NumPy array
+assert probs_all.shape==(500,199,3)
 
 bed_file = example_file("pysnptools/examples/toydata.5chrom.*","*.bed")
 from pysnptools.snpreader import Bed
