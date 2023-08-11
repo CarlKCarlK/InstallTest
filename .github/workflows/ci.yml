@@ -37,10 +37,10 @@ jobs:
         # pip install --no-build-isolation fastlmm
         # pip install pysnptools
         # pip install cbgen==1.0.1
-        pip install fastlmmclib
-        pip install fastlmm
+        # pip install fastlmmclib
+        # pip install fastlmm
         # pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm
-        # pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm==0.6.5
+        pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm==0.6.6
         
 
     - name: Test
