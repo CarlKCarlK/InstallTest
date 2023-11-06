@@ -39,7 +39,7 @@ jobs:
         # pip install pysnptools
         # pip install cbgen==1.0.1
         # pip install fastlmmclib
-        # pip install fastlmm
+        pip install fastlmm
         # pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm
         # pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm==0.6.7
         
@@ -48,6 +48,6 @@ jobs:
       shell: bash -l {0}
       run: |
         python bed-reader.minitest.py
-        # python pysnptools.minitest.py
-        # python fastlmm.minitest.py        
+        python pysnptools.minitest.py
+        python fastlmm.minitest.py        
         
