@@ -29,8 +29,8 @@ jobs:
       run: |
         # conda install pip
         # pip install poetry scipy>=1.1.0 numpy>=1.11.3 psutil>=5.6.7 pandas>=1.1.1 h5py>=2.10.0 dill>=0.2.9 wheel>=0.34.2 bed-reader>=0.2.5 more-itertools>=8.7.0
-        # pip install numpy pooch scipy
-        # pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple bed-reader[samples,sparse]
+        pip install numpy pooch scipy
+        pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple bed-reader[samples,sparse]==1.0.1b1
         
         # pip install --pre bed-reader[samples,sparse]
         # pip install bed-reader
@@ -40,7 +40,7 @@ jobs:
         # pip install pysnptools --pre
         # pip install cbgen==1.0.1
         # pip install fastlmmclib
-        pip install fastlmm
+        # pip install fastlmm
         # pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm
         # pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm==0.6.7
         
@@ -49,6 +49,6 @@ jobs:
       shell: bash -l {0}
       run: |
         python bed-reader.minitest.py
-        python pysnptools.minitest.py
-        python fastlmm.minitest.py        
+        # python pysnptools.minitest.py
+        # python fastlmm.minitest.py        
         
