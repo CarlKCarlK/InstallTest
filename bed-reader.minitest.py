@@ -32,3 +32,13 @@ print(bed.iid)  # replaced
 #  ['sample1' 'sample2' 'sample3']
 print(bed.sid)  # same as before
 #  ['sid1' 'sid2' 'sid3' 'sid4']
+
+
+with open_bed(
+    "https://raw.githubusercontent.com/fastlmm/bed-sample-files/main/small.bed",
+) as bed:
+    val = bed.read()
+    missing_count = np.isnan(val).sum()
+    missing_fraction = missing_count / val.size
+    print(f"{missing_fraction:.2}")  # Outputs 0.17
+    assert missing_count == 2
