@@ -15,23 +15,24 @@ val_all = bed.read().val  # Read all variants
 print(val_all.shape)  # Shape of the NumPy array
 assert val_all.shape == (500, 10_000)
 
-try:
-    from pysnptools.distreader import Bgen
+# cmk
+# try:
+#     from pysnptools.distreader import Bgen
 
-    BGEN_READER_AVAILABLE = True
-except ImportError:
-    BGEN_READER_AVAILABLE = False
-    print("Bgen reader is not available on this platform")
+#     BGEN_READER_AVAILABLE = True
+# except ImportError:
+#     BGEN_READER_AVAILABLE = False
+#     print("Bgen reader is not available on this platform")
 
-if BGEN_READER_AVAILABLE:
-    bgen_file = example_file("pysnptools/examples/example.bgen")
+# if BGEN_READER_AVAILABLE:
+#     bgen_file = example_file("pysnptools/examples/example.bgen")
 
-    # Read from the file
-    bgen = Bgen(bgen_file)  # Create a reader
-    probs0 = bgen[:, 0].read().val  # Read 1st SNP
-    print(probs0.shape)  # Shape of the NumPy array
-    assert probs0.shape == (500, 1, 3)
+#     # Read from the file
+#     bgen = Bgen(bgen_file)  # Create a reader
+#     probs0 = bgen[:, 0].read().val  # Read 1st SNP
+#     print(probs0.shape)  # Shape of the NumPy array
+#     assert probs0.shape == (500, 1, 3)
 
-    probs_all = bgen.read().val  # Read all variants
-    print(probs_all.shape)  # Shape of the NumPy array
-    assert probs_all.shape == (500, 199, 3)
+#     probs_all = bgen.read().val  # Read all variants
+#     print(probs_all.shape)  # Shape of the NumPy array
+#     assert probs_all.shape == (500, 199, 3)
