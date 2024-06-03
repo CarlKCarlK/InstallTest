@@ -18,11 +18,16 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Set up Miniconda ${{ matrix.python-version }}
-      uses: conda-incubator/setup-miniconda@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
       with:
-          auto-update-conda: true
-          python-version: ${{ matrix.python-version }}
+        python-version: ${{ matrix.python-version }}  
+
+    # - name: Set up Miniconda ${{ matrix.python-version }}
+    #   uses: conda-incubator/setup-miniconda@v3
+    #   with:
+    #       auto-update-conda: true
+    #       python-version: ${{ matrix.python-version }}
 
     - name: Install Prerequisites and build
       shell: bash -l {0}
