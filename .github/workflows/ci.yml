@@ -56,6 +56,6 @@ jobs:
       shell: bash -l {0}
       run: |
         # cmk python bed-reader.minitest.py
-        # cnj python pysnptools.minitest.py
+        # cmk python pysnptools.minitest.py
         python fastlmm.minitest.py
         
