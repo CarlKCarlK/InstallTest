@@ -46,7 +46,7 @@ jobs:
         # pip install pysnptools --pre
         # pip install cbgen==1.0.1
         # pip install fastlmmclib
-        pip install fastlmm --pre
+        pip install fastlmm==0.6.9b1
         pip install --upgrade bed-reader[samples]
         # pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm
         # pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm==0.6.7
