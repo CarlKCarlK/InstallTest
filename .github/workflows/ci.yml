@@ -38,10 +38,10 @@ jobs:
         # pip install scipy numpy pandas psutil h5py cloudpickle more-itertools bed-reader poetry pooch
         # pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple pysnptools==0.5.11
         # pip install --no-build-isolation fastlmm
-        pip install pysnptools --pre
+        # pip install pysnptools --pre
         # pip install cbgen==1.0.1
         # pip install fastlmmclib
-        pip install fastlmm
+        pip install fastlmm --pre
         pip install --upgrade bed-reader[samples]
         # pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm
         # pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm==0.6.7
