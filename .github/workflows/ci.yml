@@ -35,7 +35,7 @@ jobs:
         else
           source .venv/Scripts/activate
         fi
-        uv pip install pysnptools[bgen]==0.5.14a1 --prerelease=allow
+        uv pip install pysnptools[bgen]==0.5.14 # a1 --prerelease=allow
         uv pip install fastlmm==0.6.12a1 --prerelease=allow
         
         # Run tests
