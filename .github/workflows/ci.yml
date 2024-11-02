@@ -34,7 +34,6 @@ jobs:
       run: .venv\Scripts\activate
 
     - name: Install Prerequisites and build
-      shell: bash -l {0}
       run: |
         uv pip install fastlmm==0.6.12a1 --prerelease=allow
         # uv pip install --upgrade pysnptools[bgen]
@@ -54,7 +53,6 @@ jobs:
         # uv pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm==0.6.7
 
     - name: Test
-      shell: bash -l {0}
       run: |
         python bed-reader.minitest.py
         python pysnptools.minitest.py
