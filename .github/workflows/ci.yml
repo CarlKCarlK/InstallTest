@@ -26,34 +26,17 @@ jobs:
 
     - name: Create a virtual environment
       run: uv venv
-    - name: Activate the virtual environment (Linux and macOS)
-      if: runner.os != 'Windows'
-      run: source .venv/bin/activate
-    - name: Activate the virtual environment (Windows)
-      if: runner.os == 'Windows'
-      run: .venv\Scripts\activate
 
-    - name: Install Prerequisites and build
+    - name: Activate, and use virtual environment
+      shell: bash
       run: |
+        if [[ "$RUNNER_OS" != "Windows" ]]; then
+          source .venv/bin/activate
+        else
+          .venv/Scripts/activate
+        fi
         uv pip install fastlmm==0.6.12a1 --prerelease=allow
-        # uv pip install --upgrade pysnptools[bgen]
-        # uv pip install poetry scipy>=1.1.0 numpy>=1.11.3 psutil>=5.6.7 pandas>=1.1.1 h5py>=2.10.0 dill>=0.2.9 wheel>=0.34.2 bed-reader>=0.2.5 more-itertools>=8.7.0
-        # uv pip install numpy pooch scipy
-        # uv pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple bed-reader[samples,sparse]==1.0.1b2
-        # uv pip install bed-reader[samples,sparse]==1.0.3b1
-        # uv pip install --pre bed-reader[samples,sparse]
-        # uv pip install bed-reader
-        # uv pip install scipy numpy pandas psutil h5py cloudpickle more-itertools bed-reader poetry pooch
-        # uv pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple pysnptools==0.5.11
-        # uv pip install --no-build-isolation fastlmm
-        # uv pip install pysnptools --pre
-        # uv pip install cbgen==1.0.1
-        # uv pip install fastlmmclib
-        # uv pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm
-        # uv pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm==0.6.7
-
-    - name: Test
-      run: |
+        # other installation commands
         python bed-reader.minitest.py
         python pysnptools.minitest.py
         python fastlmm.minitest.py
