@@ -10,47 +10,48 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macOS-13, macOS-14]
-        python-version: [3.9, "3.10", "3.11", "3.12"]
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
     runs-on: ${{ matrix.os }}
 
     steps:
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
-    # - name: Set up Python ${{ matrix.python-version }}
-    #   uses: actions/setup-python@v5
-    #   with:
-    #     python-version: ${{ matrix.python-version }}  
+    - name: Install the latest version of uv
+      uses: astral-sh/setup-uv@v3
 
-    - name: Set up Miniconda ${{ matrix.python-version }}
-      uses: conda-incubator/setup-miniconda@v3
-      with:
-          auto-update-conda: true
-          python-version: ${{ matrix.python-version }}
+    - name: Install Python ${{ matrix.python-version }}
+      run: uv python install ${{ matrix.python-version }}
+
+    - name: Create a virtual environment
+      run: uv venv
+    - name: Activate the virtual environment (Linux and macOS)
+      if: runner.os != 'Windows'
+      run: source .venv/bin/activate
+    - name: Activate the virtual environment (Windows)
+      if: runner.os == 'Windows'
+      run: .venv\Scripts\activate
 
     - name: Install Prerequisites and build
       shell: bash -l {0}
       run: |
-        # conda install pip
-        # pip install poetry scipy>=1.1.0 numpy>=1.11.3 psutil>=5.6.7 pandas>=1.1.1 h5py>=2.10.0 dill>=0.2.9 wheel>=0.34.2 bed-reader>=0.2.5 more-itertools>=8.7.0
-        # pip install numpy pooch scipy
-        # pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple bed-reader[samples,sparse]==1.0.1b2
-        # pip install bed-reader[samples,sparse]==1.0.3b1
-        
-        # pip install --pre bed-reader[samples,sparse]
-        # pip install bed-reader
-        # pip install scipy numpy pandas psutil h5py cloudpickle more-itertools bed-reader poetry pooch
-        # pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple pysnptools==0.5.11
-        # pip install --no-build-isolation fastlmm
-        # pip install pysnptools --pre
-        # pip install cbgen==1.0.1
-        # pip install fastlmmclib
-        pip install fastlmm==0.6.11
-        pip install --upgrade pysnptools[bgen]
-        # pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm
-        # pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm==0.6.7
-        
+        uv pip install fastlmm==0.6.12a1 --prerelease=allow
+        # uv pip install --upgrade pysnptools[bgen]
+        # uv pip install poetry scipy>=1.1.0 numpy>=1.11.3 psutil>=5.6.7 pandas>=1.1.1 h5py>=2.10.0 dill>=0.2.9 wheel>=0.34.2 bed-reader>=0.2.5 more-itertools>=8.7.0
+        # uv pip install numpy pooch scipy
+        # uv pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple bed-reader[samples,sparse]==1.0.1b2
+        # uv pip install bed-reader[samples,sparse]==1.0.3b1
+        # uv pip install --pre bed-reader[samples,sparse]
+        # uv pip install bed-reader
+        # uv pip install scipy numpy pandas psutil h5py cloudpickle more-itertools bed-reader poetry pooch
+        # uv pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple pysnptools==0.5.11
+        # uv pip install --no-build-isolation fastlmm
+        # uv pip install pysnptools --pre
+        # uv pip install cbgen==1.0.1
+        # uv pip install fastlmmclib
+        # uv pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm
+        # uv pip install --no-build-isolation --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fastlmm==0.6.7
 
     - name: Test
       shell: bash -l {0}
@@ -58,4 +59,3 @@ jobs:
         python bed-reader.minitest.py
         python pysnptools.minitest.py
         python fastlmm.minitest.py
-        
