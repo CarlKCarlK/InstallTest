@@ -10,7 +10,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macOS-13, macOS-14]
-        python-version: ["3.10", "3.11", "3.12", "3.13"]
+        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -27,7 +27,7 @@ jobs:
     - name: Create a virtual environment
       run: uv venv
 
-    - name: Activate, and use virtual environment
+    - name: Install and test PySnpTools
       shell: bash
       run: |
         if [[ "$RUNNER_OS" != "Windows" ]]; then
@@ -35,10 +35,20 @@ jobs:
         else
           source .venv/Scripts/activate
         fi
-        uv pip install pysnptools[bgen]==0.5.14 # a1 --prerelease=allow
-        uv pip install fastlmm==0.6.12 # a1 --prerelease=allow
-        
-        # Run tests
+        uv pip install pysnptools[bgen]==0.5.15
         python bed-reader.minitest.py
         python pysnptools.minitest.py
+
+    # FaST-LMM and fastlmmclib need their own Python 3.14 releases before this
+    # downstream check can cover Python 3.14.
+    - name: Install and test FaST-LMM
+      if: matrix.python-version != '3.14'
+      shell: bash
+      run: |
+        if [[ "$RUNNER_OS" != "Windows" ]]; then
+          source .venv/bin/activate
+        else
+          source .venv/Scripts/activate
+        fi
+        uv pip install fastlmm==0.6.12
         python fastlmm.minitest.py
