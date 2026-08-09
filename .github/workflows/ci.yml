@@ -48,4 +48,5 @@ jobs:
           source .venv/Scripts/activate
         fi
         uv pip install fastlmm==0.6.13
+        python fastlmmclib.minitest.py
         python fastlmm.minitest.py
