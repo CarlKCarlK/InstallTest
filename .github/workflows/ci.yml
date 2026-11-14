@@ -8,9 +8,9 @@ on:
 # Published versions to install from PyPI. Leave a version empty to skip that
 # package until it is released.
 env:
-  BED_READER_VERSION: "1.2.0"
-  FASTLMMRSLIB_VERSION: "0.1.0"
-  PYSNPTOOLS_VERSION: ""  # set to 1.0.0 once published
+  BED_READER_VERSION: "1.2.1"
+  FASTLMMRSLIB_VERSION: "0.1.1"
+  PYSNPTOOLS_VERSION: "1.0.0"
   FASTLMM_VERSION: ""     # set to 1.0.0 once published
 
 jobs:
@@ -60,7 +60,10 @@ jobs:
     - name: Install and test PySnpTools ${{ env.PYSNPTOOLS_VERSION }}
       if: env.PYSNPTOOLS_VERSION != ''
       run: |
-        uv pip install "pysnptools[bgen]==$PYSNPTOOLS_VERSION"
+        # BGEN support is optional and not yet available on every platform
+        # (e.g. Python 3.15); fall back to the core package there.
+        uv pip install "pysnptools[bgen]==$PYSNPTOOLS_VERSION" \
+          || uv pip install "pysnptools==$PYSNPTOOLS_VERSION"
         python pysnptools.minitest.py
 
     - name: Install and test FaST-LMM ${{ env.FASTLMM_VERSION }}

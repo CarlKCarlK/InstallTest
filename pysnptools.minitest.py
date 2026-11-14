@@ -13,12 +13,13 @@ val_all = bed.read().val  # Read all variants
 print(val_all.shape)  # Shape of the NumPy array
 assert val_all.shape == (500, 10_000)
 
-try:
-    from pysnptools.distreader import Bgen
+# PySnpTools 1.0 imports Bgen lazily, so check for the optional backend itself.
+import importlib.util
 
-    BGEN_READER_AVAILABLE = True
-except ImportError:
-    BGEN_READER_AVAILABLE = False
+BGEN_READER_AVAILABLE = importlib.util.find_spec("bgen_reader") is not None
+if BGEN_READER_AVAILABLE:
+    from pysnptools.distreader import Bgen
+else:
     print("Bgen reader is not available on this platform")
 
 if BGEN_READER_AVAILABLE:
