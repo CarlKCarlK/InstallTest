@@ -1,52 +1,70 @@
 name: CI
 on:
   push:
+  workflow_dispatch:
   schedule:
     - cron: '0 0 * * 0'
 
+# Published versions to install from PyPI. Leave a version empty to skip that
+# package until it is released.
+env:
+  BED_READER_VERSION: "1.2.0"
+  FASTLMMRSLIB_VERSION: "0.1.0"
+  PYSNPTOOLS_VERSION: ""  # set to 1.0.0 once published
+  FASTLMM_VERSION: ""     # set to 1.0.0 once published
+
 jobs:
   ci:
+    name: ${{ matrix.os }}, Python ${{ matrix.python-version }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-15-intel, macos-15]
-        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
+        os: [ubuntu-latest, ubuntu-24.04-arm, windows-latest, windows-11-arm, macos-15-intel, macos-15]
+        python-version: ["3.11", "3.12", "3.13", "3.14", "3.15"]
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
 
     steps:
-
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Install the latest version of uv
-      uses: astral-sh/setup-uv@v3
+    - name: Install uv
+      uses: astral-sh/setup-uv@v6
 
-    - name: Install Python ${{ matrix.python-version }}
-      run: uv python install ${{ matrix.python-version }}
-
-    - name: Create a virtual environment
-      run: uv venv
-
-    - name: Install and test PySnpTools
-      shell: bash
+    - name: Create a Python ${{ matrix.python-version }} virtual environment
       run: |
-        if [[ "$RUNNER_OS" != "Windows" ]]; then
-          source .venv/bin/activate
+        uv venv --python ${{ matrix.python-version }}
+        if [[ "$RUNNER_OS" == "Windows" ]]; then
+          echo "$GITHUB_WORKSPACE/.venv/Scripts" >> "$GITHUB_PATH"
         else
-          source .venv/Scripts/activate
+          echo "$GITHUB_WORKSPACE/.venv/bin" >> "$GITHUB_PATH"
         fi
-        uv pip install pysnptools[bgen]==0.5.15
+        echo "VIRTUAL_ENV=$GITHUB_WORKSPACE/.venv" >> "$GITHUB_ENV"
+
+    # Install only published wheels, so a missing platform wheel fails here
+    # instead of silently building from source.
+    - name: Install and test bed-reader ${{ env.BED_READER_VERSION }}
+      if: env.BED_READER_VERSION != ''
+      run: |
+        uv pip install --only-binary bed-reader "bed-reader[samples]==$BED_READER_VERSION"
         python bed-reader.minitest.py
+
+    - name: Install and test fastlmmrslib ${{ env.FASTLMMRSLIB_VERSION }}
+      if: env.FASTLMMRSLIB_VERSION != ''
+      run: |
+        uv pip install --only-binary fastlmmrslib "fastlmmrslib==$FASTLMMRSLIB_VERSION"
+        python fastlmmrslib.minitest.py
+
+    - name: Install and test PySnpTools ${{ env.PYSNPTOOLS_VERSION }}
+      if: env.PYSNPTOOLS_VERSION != ''
+      run: |
+        uv pip install "pysnptools[bgen]==$PYSNPTOOLS_VERSION"
         python pysnptools.minitest.py
 
-    - name: Install and test FaST-LMM
-      shell: bash
+    - name: Install and test FaST-LMM ${{ env.FASTLMM_VERSION }}
+      if: env.FASTLMM_VERSION != ''
       run: |
-        if [[ "$RUNNER_OS" != "Windows" ]]; then
-          source .venv/bin/activate
-        else
-          source .venv/Scripts/activate
-        fi
-        uv pip install fastlmm==0.6.13
-        python fastlmmclib.minitest.py
+        uv pip install "fastlmm==$FASTLMM_VERSION"
         python fastlmm.minitest.py
